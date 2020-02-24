@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.TableLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager.widget.ViewPager.OnAdapterChangeListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayout.Tab;
+import java.net.URI;
 
 public class MainActivity extends AppCompatActivity implements
     Tab1Fragment.OnFragmentInteractionListener,
@@ -39,8 +41,13 @@ public class MainActivity extends AppCompatActivity implements
     configureTabLayout();
   }
 
+  @Override
+  public void onFragmentInteraction(Uri uri){
+
+  }
+
   private void  configureTabLayout() {
-           TableLayout tabLayout = findViewById(R.id.tab_layout);
+           TabLayout tabLayout = findViewById(R.id.tab_layout);
     tabLayout.addTab(tabLayout.newTab() .setText("Tab 1 Item"));
     tabLayout.addTab(tabLayout.newTab() .setText("Tab 2 Item"));
     tabLayout.addTab(tabLayout.newTab() .setText("Tab 3 Item"));
@@ -51,28 +58,31 @@ public class MainActivity extends AppCompatActivity implements
 
     viewPager.setAdapter(adapter);
 
-    viewPager.addOnAdapterChangeListener(new
+    viewPager.addOnPageChangeListener( new
         TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     tabLayout.addOnTabSelectedListener(new
-        TableLayout.OnTabSelectedListener(){
+        TabLayout.OnTabSelectedListener(){
       @Override
-          public void onTabSelected(TableLayout.Tab tab){
+          public void onTabSelected(TabLayout.Tab tab){
         viewPager.setCurrentItem(tab.getPosition());
       }
 
-      @Override
-          public void onTabUnselected(TabLayout.Tab tab){
+          @Override
+          public void onTabUnselected(Tab tab) {
 
-      }
+          }
 
-      @Override
+          
+
+          @Override
           public void onTabReselected(TabLayout.Tab tab){
 
       }
+
         });
   }
-  @Override
-  public void onFragmentInteraction(Uri uri);
+//  @Override
+//  public void onFragmentInteraction(Uri uri);
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {

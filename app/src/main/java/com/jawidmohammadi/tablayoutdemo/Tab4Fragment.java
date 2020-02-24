@@ -1,6 +1,7 @@
 package com.jawidmohammadi.tablayoutdemo;
 
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,5 +26,7 @@ public class Tab4Fragment extends Fragment {
     // Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_tab4, container, false);
   }
-
+  public interface OnFragmentInteractionListener{
+    public void onFragmentInteraction(Uri uri);
+  }
 }
